@@ -5,15 +5,15 @@ import game from './index'
 
 const socket = io()
 
-socket.on('update-game-state', (state, cards) => {
-  console.log('recieved game state', state, cards)
-  game.cards = cards
-  game.state = state
-})
+// socket.on('update-game-state', (state, cards) => {
+//   console.log('recieved game state', state, cards)
+//   game.cards = cards
+//   game.state = state
+// })
 
-socket.on('start', () => {
-  game.start()
-})
+// socket.on('start', () => {
+//   game.start()
+// })
 
 socket.on('win', (name) => {
   alert(name + ' wins')

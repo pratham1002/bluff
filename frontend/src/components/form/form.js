@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from './form.module.css';
-import game from '../../index'
 import socket from '../../play'
+import Game from '../../components/game/game'
 
 class Form extends React.Component {
   constructor(props) {
@@ -35,10 +36,10 @@ class Form extends React.Component {
     if (!this.state.playClicked) {
       event.preventDefault();
 
-      game.name = this.state.name.trim().toLowerCase()
-      game.room = this.state.room.trim().toLowerCase()
+      const name = this.state.name.trim().toLowerCase()
+      const room = this.state.room.trim().toLowerCase()
 
-      await socket.emit('join', game.name, game.room, (error) => {
+      await socket.emit('join', name, room, (error) => {
         if (error) {
           alert(error)
         } else {
@@ -48,10 +49,12 @@ class Form extends React.Component {
           })
         }
       })
+
+      ReactDOM.render(<Game name={name} room={room}/>, document.getElementById('root').appendChild(document.createElement("DIV")));
     } else {
       console.log('start')
       event.preventDefault();
-      await socket.emit('start')
+      await socket.emit('start');
     }
   }
 
