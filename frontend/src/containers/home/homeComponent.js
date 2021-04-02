@@ -117,7 +117,7 @@ class Home extends Component {
           <FormGroup>
             <label className = "join-label" htmlFor="#roomCode">Room Code</label>
             <FormInput id="#roomCode" 
-              placeholder="Enter room to join to create" 
+              placeholder="Enter room code to join or create" 
               onChange = {this.handleRoomChange}
               value = { this.state.roomCode }
               autoComplete = "off"
